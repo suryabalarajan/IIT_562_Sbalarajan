@@ -1,18 +1,23 @@
 var main = function () {
 	document.getElementById('fizzbuzzBtn').addEventListener('click', valValidation, false);
+	var ul = document.getElementById("fizzbuzzlist"), msg;
 	
   //function to print fizzbuzz
 	function fizzBuzz(val_1,val_2) {
 		for (var i = val_1; i <= val_2; i++) {
 			if ( i % 3 == 0 && i % 5 == 0 ) {
-				console.log("FizzBuzz");
+				msg = "Fizzbuzz";
 			} else if ( i % 3 == 0 ) {
-				console.log("Fizz");
+				msg = "Fizz";
 			} else if ( i % 5 == 0 ) {
-				console.log("Buzz");
+				msg = "Buzz";
 			} else {
-				console.log(i);
+				msg = i;
 			}
+			var li = document.createElement("li");
+			li.appendChild(document.createTextNode(i + " = " + msg));
+			li.setAttribute("class", msg);
+			ul.appendChild(li);
 		}
 	};
   
