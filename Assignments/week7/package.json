@@ -1,0 +1,10 @@
+{
+  "name": "app",
+  "description": "To test the REST api ",
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "mongo": "^0.1.0"
+  }
+}
