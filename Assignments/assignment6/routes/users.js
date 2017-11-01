@@ -25,31 +25,31 @@ var populateDB = function() {
     var users = [
     	{
     		"user": {
-					"name": "Example Name",
-					"email": "example@gmail.com"
-					},
-			"reminder": [
-                {
-                    "rid": new ObjectID(),
-					"title": "Example Title",
-					"description": "Example Description",
-					"created": new Date()
-				}
-            ]
-		},
+				"name": "Example Name",
+				"email": "example@gmail.com"
+			},
+		"reminder": [
+                	{
+                    		"rid": new ObjectID(),
+				"title": "Example Title",
+				"description": "Example Description",
+				"created": new Date()
+			}
+            	]
+	},
         {
-            "user": {
-                    "name": "Example Name2",
-                    "email": "example2@gmail.com"
-                    },
-            "reminder": [
-                {
-                    "rid": new ObjectID(),
-                    "title": "Example Title2",
-                    "description": "Example Description2",
-                    "created": new Date()
-                }
-            ]
+         	"user": {
+				"name": "Example Name2",
+				"email": "example2@gmail.com"
+			},
+		"reminder": [
+			{
+				"rid": new ObjectID(),
+				"title": "Example Title2",
+				"description": "Example Description2",
+				"created": new Date()
+			}
+            	]
         }
     ];
 
