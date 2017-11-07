@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  div.container
+    div.jumbotron
+      h1= title
+
+    div
+      - if (reminders.length)
+        table.table
+          tr
+            th ID
+            th Title
+            th Description
+            th Dated Created
+          each reminder in reminders
+            tr
+              td= reminder.rid
+              td
+                a(href="/users/"+ id+"/reminders/"+ reminder.rid) #{reminder.title}
+              td= reminder.description
+              td= reminder.created
+      - else 
+        p No Reminders for this User
+
+      
