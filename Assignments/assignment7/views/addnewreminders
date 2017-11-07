@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div.container
+    div.jumbotron
+      h1= title
+
+    div
+      form(role='form', method='post', action='')
+        .form-group
+          label(for='name') Title
+          input#title.form-control(name='title', type='text', value=reminder.title)
+        .form-group
+          label(for='email') Description
+          input#description.form-control(name='description', type='text', value=reminder.description)
+        input.btn.btn-primary(type='submit')
