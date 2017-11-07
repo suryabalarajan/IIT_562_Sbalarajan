@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  div.container
+    div.jumbotron
+      h1= title
+
+    div
+      div.well Name : #{user.user.name}
+      div.well Email : #{user.user.email}
+      div.well  
+        a(href="/users/"+ user._id+"/reminders") Reminder :
+          - if (user.reminder && user.reminder.length)
+            each reminder in user.reminder
+              p #{reminder.title}
+          - else 
+            p No Reminders for this User
+      a.btn.btn-primary(href="/users/"+ user._id+ "/deleteuser") Delete User
