@@ -26,6 +26,8 @@ app.get('/users/:id/reminders/:rid', users.findremindersbyID);
 app.get('/adduser', users.getnewuser);
 app.post('/adduser', users.adduser)
 app.get('/users/:id/deleteuser', users.deleteuser);
+app.get('/users/:id/addnewreminders', users.getnewreminders);
+app.post('/users/:id/addnewreminders', users.addreminders);
 
 app.listen(3000);
 console.log('Listening on port 3000...');
