@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  div.container
+    div.jumbotron
+      h1= title
+
+    div
+      table.table
+        tr
+          th id
+          th name
+          th email
+          th reminder
+        each user in users
+          tr
+            td= user._id
+            td
+              a(href="/users/" + user._id) #{user.user.name}
+            td= user.user.email
+            td
+              a(href="/users/" + user._id +"/reminders") reminders
+      a.btn.btn-primary(href="/adduser") Add New User
