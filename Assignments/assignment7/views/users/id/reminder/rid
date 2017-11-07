@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  div.container
+    div.jumbotron
+      h1= title
+
+    div
+      div.well Title : #{reminder.title}
+      div.well Description : #{reminder.description}
+      div.well Created : #{reminder.created}
