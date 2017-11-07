@@ -27,38 +27,38 @@ var populateDB = function() {
     var users = [
     	{
     		"user": {
-			"name": "Example Name",
-			"email": "example@gmail.com"
+					"name": "Example Name",
+					"email": "example@gmail.com"
+					},
+			"reminder": [
+                {
+                    "rid": new ObjectID(),
+					"title": "Example Title",
+					"description": "Example Description",
+					"created": new Date()
+				}
+            ]
 		},
-		"reminder": [
-                	{
-                    		"rid": new ObjectID(),
-				"title": "Example Title",
-				"description": "Example Description",
-				"created": new Date()
-			}
-            	]
-	},
         {
             "user": {
                     "name": "Example Name2",
                     "email": "example2@gmail.com"
-	    },
+                    },
             "reminder": [
-		    {
-                    	"rid": new ObjectID(),
-                    	"title": "Example Title2",
-                    	"description": "Example Description2",
-                    	"created": new Date()
-		    }
+                {
+                    "rid": new ObjectID(),
+                    "title": "Example Title2",
+                    "description": "Example Description2",
+                    "created": new Date()
+                }
             ]
         }
     ];
 
 	db.collection('userDB', function(err, collection) {
-        	collection.insert(users, {safe:true}, function(err, result) {
-            		console.log(result);
-        	});
+        collection.insert(users, {safe:true}, function(err, result) {
+            console.log(result);
+        });
     });   
 };
 
@@ -149,8 +149,54 @@ exports.getnewuser = function(req, res) {
 
     console.log(req.body);
 
-    res.render('adduser', {title : 'AddUser', user: {} });
+    res.render('adduser', {title : 'Add User', user: {} });
     
+};
+
+exports.getnewreminders = function(req, res) {
+
+
+    console.log(req.body);
+
+    res.render('addnewreminders', {title : 'Add New Reminders', reminder: {} });
+    
+};
+
+exports.addreminders = function(req, res) {
+
+    console.log(req.body.title);
+    var id = req.params.id;
+
+    var reminder = {
+        "reminder": [
+                {
+                    "rid": new ObjectID(),
+                    "title": req.body.title,
+                    "description": req.body.description,
+                    "created": new Date()
+                }
+            ]
+    };
+
+    db.collection('userDB', function(err, collection) {
+        collection.update({'_id':new mongo.ObjectID(id)}, {$push: {reminder}},  function(err, result) {
+            if (err) {
+                console.log(result);
+                res.status(404).send({'error':'An error has occurred'});
+            } else {
+                console.log('Success: ' + result);
+                db.collection('userDB', function(err, collection) {
+                    collection.find({'_id':new mongo.ObjectID(id)}).toArray(function(err, item) {
+                        if (err) res.status(404);
+                        else {
+                            console.log("remidners : " + item[0].reminder);
+                            res.status(200).render('users/id/reminder', {title : 'Reminders', reminders : item[0].reminder, id : id}); 
+                        }    
+                    });
+                });
+            }
+        });
+    });
 };
 
 exports.adduser = function(req, res) {
@@ -183,6 +229,8 @@ exports.adduser = function(req, res) {
         });
     });
 };
+
+
 
 exports.deleteuser = function(req, res) {
 
